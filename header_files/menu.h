@@ -2,16 +2,22 @@
 void gotoxy(int,int);
 void setcolor(int);
 void MenuContents(char[],int,int,int);
+void helpToUser(void);
+void CreateResume(void);
 //functions
 int showMenu()
 {
     extern char choice;
   system("cls");
+
+  SetConsoleTitle("Resume Generator");
+
   MenuContents("1 : Create Resume",10,5,1);
    MenuContents("2 : SEE History",10,7,2);
     MenuContents("3 : Help",10,9,3);
-     MenuContents("4 : Give Contribution to this project",10,11,4);
-     MenuContents("Your Choice ->",16,13,6);
+     MenuContents("4 : Give Contribution to this project",10,11,6);
+      MenuContents("5 : Exit ",10,13,4);
+     MenuContents("Your Choice ->",16,15,6);
 
      enterAgain:
 
@@ -35,7 +41,16 @@ int showMenu()
      {
          system("start https://github.com/incredible-India/resume-generator-with-webpage-in-c");
             exit(0);
-     }else
+     }else if(choice == '5')
+     {
+         system("cls");
+         MenuContents("Thanx For Visiting US..",40,12,8);
+         getche();
+         exit(0);
+
+     }
+
+     else
      {
         printf("\a");
         goto enterAgain;

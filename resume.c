@@ -7,21 +7,16 @@
 
 //user-define header files
 #include "./header_files/menu.h"
+#include "./header_files/helpAndHistory.h"
+#include "./header_files/userinfo.h"
 //global variables
 int i,j;
 char choice;
-struct node
-{
-    char userInformation[500];
-    int index;
-    int *next;
-
-
-} ;
 
 //function declarations
 int showMenu();
-
+void helpToUser(void);
+void CreateResume(void);
 void main()
 {
 
@@ -29,6 +24,19 @@ extern int i;
 
   i = showMenu();
 
-    printf("%d",i);
+  if(i == 1)
+  {
+      CreateResume();
+
+  }else if (i == 2)
+  {
+
+  }else
+  {
+      helpToUser();
+  }
+
+
+
 
 }
