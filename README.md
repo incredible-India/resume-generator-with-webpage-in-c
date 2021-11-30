@@ -1,1 +1,0 @@
-# MySql-commands-in-c
