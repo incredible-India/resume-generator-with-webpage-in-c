@@ -17,6 +17,10 @@ char choice;
 int showMenu();
 void helpToUser(void);
 void CreateResume(void);
+void ShowUserHistory(void);
+
+
+//start
 void main()
 {
 
@@ -30,6 +34,7 @@ extern int i;
 
   }else if (i == 2)
   {
+      ShowUserHistory();
 
   }else
   {

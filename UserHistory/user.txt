@@ -1,0 +1,48 @@
+
+Dec  1 2021 
+333  ---> Phone
+
+333  ---> Address
+
+333  ---> State 
+
+333  ---> City 
+
+333  ---> About 
+
+333  ---> Skills 
+
+333  ---> Email 
+
+333  ---> D.O.B
+
+333  ---> Father`s Name
+
+333  ---> Last Name
+
+222  ---> *First Name
+---END---
+Dec  1 2021
+ 
+Phone  ---> 222
+
+Address  ---> 222
+
+State   ---> 222
+
+City   ---> 2222
+
+About   ---> 2222
+
+Skills   ---> 222
+
+Email   ---> 222
+
+D.O.B  ---> 222
+
+Father`s Name  ---> 2222
+
+Last Name  ---> 2222
+
+*First Name  ---> 2222
+---END---
