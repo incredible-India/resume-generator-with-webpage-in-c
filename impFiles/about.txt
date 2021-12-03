@@ -1,0 +1,21 @@
+. Organised and dependable candidate successful at managing multiple
+priorities with a positive attitude. Willingness to take on added
+responsibilities to meet team goals. Driven student leveraging studies in
+Computer Science and Engineering seek real world experience. Offers
+interpersonal and task prioritization skills. Ambitious , career-focused
+job-seeker, anxious to obtain an entry-level position to help launch a career
+while achieving the company's goals. Friendly student available for
+weekend , evening and holiday shifts. Considered hard working, punctual
+and driven. To seek and maintain a full time position that offers
+professional challenges utilizing interpersonal skills, excellent time
+management and problem solving skills. Reliable intern seeks an
+opportunity to expand skills and gain real world experience. </p>
+  <hr>
+  </div>
+
+<!-- skills        -->
+<div class="about container" >
+    
+    <h1 class="og harsh"><a name="skill" class="og">Skills</a></h1>
+
+    <h3 class="skills">

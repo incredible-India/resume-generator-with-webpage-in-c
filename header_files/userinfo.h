@@ -3,6 +3,7 @@ struct node
 {
     char *userInformation;
     char *InformationTitle;
+    int indexNumber;
 
     struct node *next;
 
@@ -10,17 +11,21 @@ struct node
 };
 
 //function declarations..
-struct node* inserDataForUser(struct node *,char[],int,int,int,int);
+struct node* inserDataForUser(struct node *,char[],int,int,int,int,int);
 void SaveInformationInTXTFile(struct node *);
 int  ConfirmationResponse(struct node *);
+int ImageConfimation(void);
+void  createHTMLFileResume(struct node *);
+void appendInHTML(struct node *,int,FILE *);
 
 //functions...
 void CreateResume()
 {
 
   struct  node *userFName;
-    extern int j;
+   int j,i;
    char *userinfo;
+
 
    userFName = (struct node *) malloc(sizeof(struct node));
 
@@ -54,6 +59,7 @@ void CreateResume()
     }else
     {
         userFName->userInformation = userinfo;//(char*)userinfo;
+        userFName->indexNumber = 0;
            userFName->next = NULL;
     }
 
@@ -70,45 +76,60 @@ void CreateResume()
 //user last name
 
 
-   userFName = inserDataForUser(userFName,"Last Name",40,12,4,1);
+   userFName = inserDataForUser(userFName,"Last Name",40,12,4,1,1);
 
   //Father`s name
 
-   userFName = inserDataForUser(userFName,"Father`s Name",40,12,5,1);
+   userFName = inserDataForUser(userFName,"Father`s Name",40,12,5,1,2);
 
 //Date-of-birth
 
- userFName = inserDataForUser(userFName,"D.O.B",40,12,7,1);
+ userFName = inserDataForUser(userFName,"D.O.B",40,12,7,1,3);
 
  //email
 
- userFName = inserDataForUser(userFName,"Email ",40,12,5,1);
+ userFName = inserDataForUser(userFName,"Email ",40,12,5,1,4);
 
   //skills
 
- userFName = inserDataForUser(userFName,"Skills ",40,12,8,1);
+ userFName = inserDataForUser(userFName,"Skills ",40,12,8,1,5);
 
  //about
 
- userFName = inserDataForUser(userFName,"About ",40,12,4,0);
+ userFName = inserDataForUser(userFName,"About ",40,12,4,0,6);
 
   //city
 
- userFName = inserDataForUser(userFName,"City ",40,12,9,1);
+ userFName = inserDataForUser(userFName,"City ",40,12,9,1,7);
 
    //State
 
- userFName = inserDataForUser(userFName,"State ",40,12,10,1);
+ userFName = inserDataForUser(userFName,"State ",40,12,10,1,8);
 
 
    //Address
 
- userFName = inserDataForUser(userFName,"Address",40,12,4,0);
+ userFName = inserDataForUser(userFName,"Address",40,12,4,0,9);
 
 
    //phone
 
- userFName = inserDataForUser(userFName,"Phone",40,12,12,1);
+ userFName = inserDataForUser(userFName,"Phone",40,12,12,1,10);
+
+ //for the image confirmation..
+
+ i = ImageConfimation();
+
+ if(i == 2)
+ {
+     //image..
+      userFName = inserDataForUser(userFName,"Image Name",40,12,7,0,11);
+
+ }else
+ {
+       userFName = inserDataForUser(userFName,"Image Name",40,12,7,1,11);
+
+ }
 
     //show confirmation message
 
@@ -117,6 +138,12 @@ void CreateResume()
     if(j)
     {
         SaveInformationInTXTFile(userFName);
+        //now time to create html file...
+        createHTMLFileResume(userFName);
+
+        system("start MyResume/user.html");
+
+
 
 
 
@@ -133,7 +160,7 @@ void CreateResume()
 
 }
 
-struct node * inserDataForUser(struct node *head,char title[],int x,int y,int colorCode,int Options)
+struct node * inserDataForUser(struct node *head,char title[],int x,int y,int colorCode,int Options,int IndexInfo)
 {
 
  struct node *ptr = (struct node *)malloc(sizeof(struct node));
@@ -153,7 +180,7 @@ struct node * inserDataForUser(struct node *head,char title[],int x,int y,int co
          printf("%s (*required) :\t",title);
     }else
     {
-         printf("%s (optional) :\t",title);
+         printf("%s (optional, hit \'Enter\' to skip) :\t",title);
 
     }
 
@@ -189,6 +216,8 @@ struct node * inserDataForUser(struct node *head,char title[],int x,int y,int co
 
  ptr->InformationTitle = title;
 
+ ptr->indexNumber = IndexInfo;
+
  ptr->next = head;
 
 
@@ -215,6 +244,8 @@ void SaveInformationInTXTFile(struct node *ptr)
         ptr = ptr->next;
     }
       fprintf(writeData,"---END---");
+
+      fclose(writeData);
 }
 
 //this function will confirm that data has to be send or not
@@ -272,3 +303,211 @@ int ConfirmationResponse(struct node *ptr)
     }
 
 }
+
+int ImageConfimation()
+{
+
+   char IMGchoice;
+
+    gotoxy(40,12);
+
+    system("cls");
+
+    printf("Do You want to add Image. (yes : y or no : n)");
+
+    gotoxy(40,14);
+
+    imfINfo:
+
+    IMGchoice = getch();
+
+    if(IMGchoice == 'n' || IMGchoice == 'N')
+    {
+        return 2;
+
+    }else if(IMGchoice == 'y' || IMGchoice == 'Y')
+    {
+        system("cls");
+        gotoxy(40,12);
+        printf("paste your image in userimage folder in main directory..\n");
+        getch();
+
+        return 1;
+
+    }else
+    {
+
+        printf("\a");
+        goto imfINfo;
+    }
+
+
+
+}
+
+
+//here we will create html file file
+
+void  createHTMLFileResume(struct node *ptr)
+{
+
+    FILE *existingFILE,*towrite,*lasttext,*aboutTEXT;
+
+    existingFILE = fopen("./impFiles/base1.txt","r");
+
+     lasttext = fopen("./impFiles/last.txt","r");
+
+    towrite =  fopen("./MyResume/user.html","w");
+
+    aboutTEXT = fopen("./impFiles/about.txt","r");
+
+    char datareading;
+    char lastline;
+    char aboutUser;
+//starting;
+    if(existingFILE == NULL)
+    {
+        system("cls");
+        gotoxy(40,12);
+        printf("File Error !");
+        getch();
+        exit(0);
+    }else
+    {
+
+         while(!feof(existingFILE))
+    {
+
+       datareading=fgetc(existingFILE);
+
+        fputc(datareading,towrite);
+
+    }
+
+
+    }
+    //in between data need to be inserted..
+
+      fprintf(towrite,"<h1 class=\'fname\'>");
+        appendInHTML(ptr,0,towrite);
+         fprintf(towrite,"<span class=\"else\">");
+           appendInHTML(ptr,1,towrite);
+           fprintf(towrite," \t</span> </h1>\n<div class=\"con\">\n <h6><a href=\"tel:+91");
+            appendInHTML(ptr,10,towrite);
+             fprintf(towrite,"\"> <i class=\"fas fa-phone\"></i>");
+             appendInHTML(ptr,10,towrite);
+             fprintf(towrite,"</a></h6>\n<h6><a href=\"mailto:");
+             appendInHTML(ptr,4,towrite);
+              fprintf(towrite,"\"> <i class=\"fas fa-envelope-open\"></i> mail us</a></h6>\n</div>\n</div>\n</div>\n</div>");
+                 fprintf(towrite,"<!-- About  -->\n<div class=\"about container\" >\n<h1 class=\"og harsh\"><a name=\"education\" class=\"og\">");
+                   appendInHTML(ptr,0,towrite);
+                    fprintf(towrite," ");
+                       appendInHTML(ptr,1,towrite);
+                    fprintf(towrite,"</a></h1>\n<h4 class=\"og harsh\"><a name=\"about\" class=\"og\">");
+                     appendInHTML(ptr,3,towrite);
+                     fprintf(towrite,"( Father : ");
+                     appendInHTML(ptr,2,towrite);
+                      fprintf(towrite,")</a>\n</h4>\n<p>");
+                        appendInHTML(ptr,6,towrite);
+
+            if(aboutTEXT == NULL)
+            {
+                system("cls");
+        gotoxy(40,12);
+        printf("File Error !");
+        getch();
+        exit(0);
+
+            }else
+            {
+
+
+        while(!feof(aboutTEXT))
+    {
+
+      aboutUser=fgetc(aboutTEXT);
+
+        fputc(aboutUser,towrite);
+
+    }
+
+            }
+
+             appendInHTML(ptr,5,towrite);
+              fprintf(towrite," </h3></div>\n<!-- adderess   -->\n<div class=\"about container\" ><hr>\n<h1 class=\"og harsh\"><a name=\"address\" class=\"og\">Address</a></h1><h3 class=\"skills\">");
+                appendInHTML(ptr,7,towrite);
+                fprintf(towrite,", ");
+                 appendInHTML(ptr,8,towrite);
+                   fprintf(towrite,"</h3>\n<h3 class=\"skills\">");
+                    appendInHTML(ptr,9,towrite);
+                    fprintf(towrite,"\n</h3>\n</div>");
+
+
+
+    //last file
+
+     if(lasttext == NULL)
+    {
+        system("cls");
+        gotoxy(40,12);
+        printf("File Error !");
+        getch();
+        exit(0);
+    }else
+    {
+        fflush(stdin);
+        while(!feof(lasttext))
+    {
+
+      lastline=fgetc(lasttext);
+
+        fputc(lastline,towrite);
+
+    }
+
+    }
+
+        fclose(existingFILE);
+        fclose(aboutTEXT);
+        fclose(lasttext);
+        fclose(towrite);
+
+
+
+}
+
+//this will append the user data....
+void appendInHTML(struct node *ptr,int index,FILE *pk)
+{
+    //FILE *appendData;
+
+   // appendData = fopen("./MyResume/user.html","a");
+
+
+
+    while(ptr != NULL)
+    {
+        if(ptr->indexNumber == index)
+        {
+
+               if(ptr->userInformation == "0")
+               {
+                    fprintf(pk,"Not Available");
+
+               }else
+               {
+                   fprintf(pk,"%s",ptr->userInformation);
+               }
+        }
+          ptr = ptr->next;
+        }
+
+
+
+    }
+
+
+
+
+
+

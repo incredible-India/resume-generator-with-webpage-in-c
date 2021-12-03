@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>iProfile</title>
+
+    <style>
+        #iprofile{
+            color: black;
+            font-size:25px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+
+        .back{
+            /* position: relative; */
+            width:100%;
+            height: 350px;
+            background-color: #111111;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .insideBACK{
+            position: relative;
+            top: 20px;
+            left: 10px;
+        }
+        .mainframe{
+
+            position: relative;
+            width: 75%;
+            height:300px;
+            background-color: white;
+            right: 80px;
+            top: 200px;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+           
+           
+            
+            
+
+        }
+
+        .mainimg{
+         position: relative;
+         /* border-radius: 50%; */
+         bottom: 150px;
+        left: 80px;
+        }
+
+        .userinfo {
+            position: relative;
+            right: 90px;
+            letter-spacing: 2px;;
+            
+        }
+
+        .fname{
+            color: orangered;
+        }
+        .else {
+
+            color: goldenrod;
+        }
+
+        .con{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            color: orangered;
+        }
+
+        .con a{
+            text-decoration: none;
+            color: orangered;
+
+        }
+        .loader{
+
+width: 100%;
+height: 100vh;
+
+position: fixed;
+background-color: wheat;
+z-index: 10000;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.loader h5{
+color: black;
+}
+.og{
+    font-weight: 600;
+    color: orangered;
+    letter-spacing: 2px;
+    text-decoration: none;
+
+}
+.about{
+    position: relative;
+    top: 100px;
+}
+
+.about{
+    background-image: linear-gradient(to right,lightblue,white);
+}
+.about p{
+    color: goldenrod;
+  
+}
+.skills {
+    color: goldenrod;
+}
+    </style>
+</head>
+<body onload="stopLoading()">
+   
+
+    <!-- lodaer  -->
+    <div class="loader">
+
+        <div class="spinner-border text-primary" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-border text-secondary" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-border text-success" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-border text-danger" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-border text-warning" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-border text-info" role="status">
+          <span class="sr-only">Loading...</span>
+        </div>
+       
+      </div>
+    <!-- NAVBAR  -->
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#" id="iprofile">iProfile</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+              <a class="nav-link" href="#about">About</a>
+              <a class="nav-link" href="#skill">Skills</a>
+              <a class="nav-link " href="#address">Address</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+ <!-- background  -->
+
+ <div class="back">
+
+    <div class="insideBACK">
+        <img src="./312835-ffffff.svg" alt="" class="img-fluid" width="150" height="16">
+    </div>
+    <div class="mainframe">
+
+
+        <img src="./safaq.jpg" alt="" class="img-fluid mainimg" width="150" height="110px">
+
+        <div class="userinfo constainer" >
+   ÿ<h1 class='fname'>himanshu<span class="else">sharma 	</span> </h1>
+<div class="con">
+ <h6><a href="tel:+919795640400"> <i class="fas fa-phone"></i>9795640400</a></h6>
+<h6><a href="mailto:hima@gmail.com"> <i class="fas fa-envelope-open"></i> mail us</a></h6>
+</div>
+</div>
+</div>
+</div><!-- About  -->
+<div class="about container" >
+<h1 class="og harsh"><a name="education" class="og">himanshu sharma</a></h1>
+<h4 class="og harsh"><a name="about" class="og">1560600( Father : sk sharma)</a>
+</h4>
+<p>good. Organised and dependable candidate successful at managing multiple
+priorities with a positive attitude. Willingness to take on added
+responsibilities to meet team goals. Driven student leveraging studies in
+Computer Science and Engineering seek real world experience. Offers
+interpersonal and task prioritization skills. Ambitious , career-focused
+job-seeker, anxious to obtain an entry-level position to help launch a career
+while achieving the company's goals. Friendly student available for
+weekend , evening and holiday shifts. Considered hard working, punctual
+and driven. To seek and maintain a full time position that offers
+professional challenges utilizing interpersonal skills, excellent time
+management and problem solving skills. Reliable intern seeks an
+opportunity to expand skills and gain real world experience. </p>
+  <hr>
+  </div>
+
+<!-- skills        -->
+<div class="about container" >
+    
+    <h1 class="og harsh"><a name="skill" class="og">Skills</a></h1>
+
+    <h3 class="skills">ÿhtml </h3></div>
+<!-- adderess   -->
+<div class="about container" ><hr>
+<h1 class="og harsh"><a name="address" class="og">Address</a></h1><h3 class="skills">ghaz, upp</h3>
+<h3 class="skills">Not Available
+</h3>
+</div></body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script>
+ 
+    let stopLoading = ()=>{
+      document.getElementsByClassName('loader')[0].style.display = "none";
+    }
+   </script>
+</html>ÿ
