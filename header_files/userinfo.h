@@ -17,6 +17,7 @@ int  ConfirmationResponse(struct node *);
 int ImageConfimation(void);
 void  createHTMLFileResume(struct node *);
 void appendInHTML(struct node *,int,FILE *);
+int checkUserImageForResume(struct node *);
 
 //functions...
 void CreateResume()
@@ -123,7 +124,7 @@ void CreateResume()
  if(i == 2)
  {
      //image..
-      userFName = inserDataForUser(userFName,"Image Name",40,12,7,0,11);
+    //  userFName = inserDataForUser(userFName,"Image Name",40,12,7,0,11);
 
  }else
  {
@@ -142,6 +143,7 @@ void CreateResume()
         createHTMLFileResume(userFName);
 
         system("start MyResume/user.html");
+        exit(0);
 
 
 
@@ -329,7 +331,7 @@ int ImageConfimation()
     {
         system("cls");
         gotoxy(40,12);
-        printf("paste your image in userimage folder in main directory..\n");
+        printf("paste your image in MyResume folder in main directory, and write name with extension (ex : user.jpg)\n");
         getch();
 
         return 1;
@@ -364,7 +366,12 @@ void  createHTMLFileResume(struct node *ptr)
     char datareading;
     char lastline;
     char aboutUser;
+    int isUserIMG;
+
 //starting;
+
+
+
     if(existingFILE == NULL)
     {
         system("cls");
@@ -442,6 +449,17 @@ void  createHTMLFileResume(struct node *ptr)
                     appendInHTML(ptr,9,towrite);
                     fprintf(towrite,"\n</h3>\n</div>");
 
+                    //first we will check user Image
+
+    isUserIMG = checkUserImageForResume(ptr);
+
+    if(isUserIMG)
+    {
+         fprintf(towrite,"<script>\nlet Userimg = document.getElementById(\'userimg\');\nUserimg.remove()\nlet USERIMG = document.getElementsByClassName(\'userimgInsert\')[0];\n USERIMG.innerHTML = `<img src=\"");
+          appendInHTML(ptr,11,towrite);
+          fprintf(towrite, "\" alt=\"\" class=\"img-fluid mainimg\" width=\"150\" height=\"110px\" id=\"userimg\">`</script>\n");
+    }
+
 
 
     //last file
@@ -507,7 +525,35 @@ void appendInHTML(struct node *ptr,int index,FILE *pk)
     }
 
 
+//this function will check user image
 
+int checkUserImageForResume(struct node *ptr)
+{
+
+    while(ptr != NULL)
+    {
+        if(ptr->indexNumber == 11)
+        {
+            if(ptr->userInformation == "0")
+            {
+                return 0;
+
+            }else
+            {
+
+                return 1;
+            }
+
+        }
+
+        ptr = ptr->next;
+
+
+    }
+
+
+
+}
 
 
 

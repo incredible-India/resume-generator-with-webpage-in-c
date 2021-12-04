@@ -178,8 +178,12 @@ color: black;
     </div>
     <div class="mainframe">
 
+	<div class="userimgInsert">
 
-        <img src="./safaq.jpg" alt="" class="img-fluid mainimg" width="150" height="110px">
+
+        <img src="./download.png" alt="" class="img-fluid mainimg" width="150" height="110px" id="userimg">
+
+</div>
 
         <div class="userinfo constainer" >
    
